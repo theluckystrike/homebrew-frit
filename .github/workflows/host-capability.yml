@@ -1,0 +1,40 @@
+name: Frit cask macOS host capability
+
+"on":
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  observe-standard-host:
+    if: ${{ github.repository == 'theluckystrike/homebrew-frit' && github.event.repository.private == false }}
+    runs-on: xcode-27
+    timeout-minutes: 4
+    steps:
+      - name: Report host capabilities without downloading Frit
+        shell: bash
+        run: |
+          set -euo pipefail
+          product_version=$(/usr/bin/sw_vers -productVersion)
+          build_version=$(/usr/bin/sw_vers -buildVersion)
+          {
+            printf '%s\n' '# Frit cask macOS host observation' ''
+            printf '%s\n' 'Host capability only. Frit is not downloaded or executed.' '' '```text'
+            printf 'ObservedUTC=%s\n' "$(/bin/date -u '+%Y-%m-%dT%H:%M:%SZ')"
+            printf '%s\n' 'RequestedRunner=xcode-27'
+            /usr/bin/sw_vers
+            printf 'RuntimeArchitecture=%s\n' "$(/usr/bin/uname -m)"
+            /usr/bin/xcodebuild -version
+            /usr/sbin/system_profiler SPHardwareDataType -detailLevel mini -timeout 15 |
+              /usr/bin/awk '/^[[:space:]]*(Model Name|Model Identifier|Chip|Processor Name|Processor Speed|Number of Processors|Total Number of Cores|Memory):/ {print}'
+            printf 'ImageOS=%s\n' "${ImageOS:-UNSET}"
+            printf 'ImageVersion=%s\n' "${ImageVersion:-UNSET}"
+            printf 'RUNNER_OS=%s\n' "${RUNNER_OS:-UNSET}"
+            printf 'RUNNER_ARCH=%s\n' "${RUNNER_ARCH:-UNSET}"
+            if [[ "$product_version" == '27.2' && "$build_version" == '26B123' ]]; then
+              printf '%s\n' 'ExactRequestedVersionAndBuild=OBSERVED'
+            else
+              printf '%s\n' 'ExactRequestedVersionAndBuild=NOT_OBSERVED'
+            fi
+            printf '%s\n' 'FritAppCompatibility=NOT_TESTED' '```'
+          } | /usr/bin/tee "$GITHUB_STEP_SUMMARY"
