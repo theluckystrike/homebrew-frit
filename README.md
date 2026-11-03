@@ -2,7 +2,7 @@
 
 Frit is a document-based glaze chemistry calculator and test log for potters. This tap packages the developer's existing direct download. It contains public installation metadata, not the private application source.
 
-Frit 1.2 build 4 requires macOS 14 Sonoma or later. Its app bundle includes Apple Silicon and Intel slices. The download is signed with Developer ID, notarized and stapled. Notarization isn't App Store approval; this is a direct-distribution release.
+Frit 1.3 build 5 requires macOS 14 Sonoma or later. Its app bundle includes Apple Silicon and Intel slices. The download is signed with Developer ID, notarized and stapled. Notarization isn't App Store approval; this is a direct-distribution release.
 
 ## Install
 
@@ -20,10 +20,10 @@ The cask installs Frit.app from the existing public DMG.
 
 | Field | Value |
 | --- | --- |
-| Version | 1.2, build 4 |
+| Version | 1.3, build 5 |
 | Minimum macOS | 14.0 |
-| Download | https://frit-app.pages.dev/download/Frit-1.2.dmg |
-| SHA256 | f5f981b8832531643117cc2ecc7add4411c532e07aa5e4dcee75b2fe77ccc71d |
+| Download | https://frit-app.pages.dev/download/Frit-1.3.dmg |
+| SHA256 | 4c0e7c59a7117e8e764f3999b537462ac0004f2216a518faf4d562c8a51daf21 |
 
 The definition has no additional package dependencies or install scripts. It has no zap stanza and does not request deletion of books or preferences. Updates require a reviewed version, URL and checksum change in the cask.
 
