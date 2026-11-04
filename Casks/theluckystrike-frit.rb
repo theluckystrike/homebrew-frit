@@ -1,6 +1,6 @@
 cask "theluckystrike-frit" do
-  version "1.3"
-  sha256 "4c0e7c59a7117e8e764f3999b537462ac0004f2216a518faf4d562c8a51daf21"
+  version "1.3.1"
+  sha256 "b40b0df0e2d090e942d25ae050a982a77eb4e7fc6fd2ade4c35d0eb7bbfdf545"
 
   url "https://frit-app.pages.dev/download/Frit-#{version}.dmg"
   name "Frit"
